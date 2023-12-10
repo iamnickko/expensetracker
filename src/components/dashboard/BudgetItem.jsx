@@ -3,9 +3,19 @@ import calculateSpent from "../../helpers/calculateSpent";
 import Card from "./UI/Card";
 import { formatCurrency } from "../../helpers/formatCurrency";
 import Button from "./UI/Button";
+import { getMatchingIdItems } from "../../helpers/getMatchingIdItems";
 
 export default function BudgetItem({ budget, showButton, showDelete }) {
   const amountSpent = calculateSpent(budget.id);
+  const hasExpenses = getMatchingIdItems({
+    category: 'expenses',
+    key: 'budget',
+    value: budget.id
+  })
+
+  if (hasExpenses.length === 0) {
+    showButton = false
+  }
 
   return (
     <Card className="min-w-full" key={budget.id}>

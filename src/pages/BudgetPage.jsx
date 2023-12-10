@@ -42,6 +42,7 @@ export default function BudgetPage() {
             showDelete={true}
           />
         )}
+        
         <AddExpenseForm
           budgets={budgets.filter((budget) => budget.id === budgetId)}
         />
